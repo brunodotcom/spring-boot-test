@@ -9,9 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Model class to hold ingredient data
+ *
+ * @author Bruno de Souza Rocha
+ */
 @Entity
-@Table(name="ingridients")
-public class Ingridient implements Serializable {
+@Table(name="ingredients")
+public class Ingredient implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -22,6 +27,7 @@ public class Ingridient implements Serializable {
 	private String name;
 	
 	private BigDecimal value;
+	
 	
 	public long getId() {
 		return id;
