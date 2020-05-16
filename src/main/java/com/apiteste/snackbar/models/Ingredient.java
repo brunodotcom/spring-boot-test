@@ -2,11 +2,13 @@ package com.apiteste.snackbar.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +30,9 @@ public class Ingredient implements Serializable {
 	private String name;
 	
 	private BigDecimal value;
+	
+	@ManyToMany(mappedBy = "ingredients")
+	private List<Sandwich> sandwiches;
 	
 	public long getId() {
 		return id;

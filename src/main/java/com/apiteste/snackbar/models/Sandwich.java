@@ -1,11 +1,14 @@
 package com.apiteste.snackbar.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -20,13 +23,18 @@ import javax.persistence.Table;
 @Table(name = "sandwiches")
 public class Sandwich implements Serializable {
 	
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	//TODO FIX - Find out why id number continues from Ingridient model ID 
 	private long id;	
 	
-	private String name;	
+	private String name;
+	
+	@ManyToMany()
+	@MapsId("id")
+	private List<Ingredient> ingredients;
 
 	public long getId() {
 		return id;
@@ -42,5 +50,13 @@ private static final long serialVersionUID = 1L;
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 }
