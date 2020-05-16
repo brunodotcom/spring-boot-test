@@ -1,7 +1,6 @@
 package com.apiteste.snackbar.models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,25 +9,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Model class to hold Ingredient data
+ * Model class to hold sandwich data
  *
  * @author Bruno de Souza Rocha
  */
-//TODO Add a Seeder to Ingridient Model
+// TODO Add Validation
+// TODO Add Relationship Between Ingredients and Sandwiches
+// TODO Add Seeder to Sandwich model
 @Entity
-@Table(name="ingredients")
-public class Ingredient implements Serializable {
+@Table(name = "sandwiches")
+public class Sandwich implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long id;	
 	
-	private String name;
-	
-	private BigDecimal value;
-	
+	private String name;	
+
 	public long getId() {
 		return id;
 	}
@@ -43,13 +42,5 @@ public class Ingredient implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public BigDecimal getValue() {
-		return value;
-	}
-
-	public void setValue(BigDecimal value) {
-		this.value = value;
 	}
 }
