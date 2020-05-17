@@ -3,6 +3,7 @@ package com.apiteste.snackbar.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,9 @@ import com.apiteste.snackbar.models.Order;
 import com.apiteste.snackbar.repository.OrderRepository;
 import com.apiteste.snackbar.services.OrderService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * Controller to hold all methods to interact to order model 
  * 
@@ -25,6 +29,8 @@ import com.apiteste.snackbar.services.OrderService;
 //TODO Add Store Validation
 @RestController
 @RequestMapping(value="/api")
+@Api(value="Orders")
+@CrossOrigin(origins = "*")
 public class OrderResource {
 
 	@Autowired
@@ -34,11 +40,12 @@ public class OrderResource {
 	OrderService orderService;
 	
 	/**
-	 * Returns a List with all orders
+	 * Returns a List with all orders with its sandwiches
 	 * 
 	 * @return List
 	 */
-	@GetMapping("/orders")	
+	@GetMapping("/orders")
+	@ApiOperation(value = "Returns a List with all orders with its sandwiches")
 	public List<Order> index() {
 		return orderRepository.findAll();
 	}
@@ -50,6 +57,7 @@ public class OrderResource {
 	 * @return order
 	 */
 	@GetMapping("/orders/{id}")	
+	@ApiOperation(value = "Returns only one order with its sandwiches by a given Id")
 	public Order show(@PathVariable(value="id") long id) {
 		return orderRepository.findById(id);
 	}
@@ -62,6 +70,7 @@ public class OrderResource {
 	 */
 	// TODO Find out why order isn't returning with its ingredients
 	@PostMapping("/orders")
+	@ApiOperation(value = "Creates a new order")
 	public Order store(@RequestBody Order order) {
 		order.setTotalValue(orderService.calcTotalValue(order));
 		return orderRepository.save(order);
@@ -74,6 +83,7 @@ public class OrderResource {
 	 * @param order
 	 */
 	@DeleteMapping("/orders")
+	@ApiOperation(value = "Delete an order by a given Id")
 	public void destroy(@RequestBody Order order) {
 		orderRepository.delete(order);		
 		
@@ -86,6 +96,7 @@ public class OrderResource {
 	 * @return order
 	 */
 	@PutMapping("/orders")
+	@ApiOperation(value = "Updates an order")
 	public Order update(@RequestBody Order order) {
 		return orderRepository.save(order);		
 		

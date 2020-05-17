@@ -13,14 +13,14 @@ The project isn't ready to deploy but you can see its development results using 
 - Import to Eclipse as Maven project
 - Create the database "snackbar" on your enviroment
 - Click to Run application
-- Access http://localhost:8080/api via Postman or other browser application
+- Access http://localhost:8080/swagger-ui.html to use
 
 ## TODO
 
  - [ ] Validation to all models
  - [ ] Exceptions
  - [ ] Auth layer
- - [ ] Swagger 
+ - [x] Swagger 
  - [ ] Deals model and its businness logic layer
  - [ ] Deploy instructions
 
