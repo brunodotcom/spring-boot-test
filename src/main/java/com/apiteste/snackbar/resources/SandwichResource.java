@@ -56,6 +56,7 @@ public class SandwichResource {
 	 * @param sandwich
 	 * @return sandwich
 	 */
+	// TODO Find out why sandwich isn't returning with its ingredients
 	@PostMapping("/sandwiches")
 	public Sandwich store(@RequestBody Sandwich sandwich) {
 		return sandwichRepository.save(sandwich);		

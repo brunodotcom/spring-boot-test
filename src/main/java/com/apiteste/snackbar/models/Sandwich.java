@@ -35,6 +35,9 @@ public class Sandwich implements Serializable {
 	@ManyToMany()
 	@MapsId("id")
 	private List<Ingredient> ingredients;
+	
+	@ManyToMany(mappedBy = "sandwiches")
+	private List<Order> orders;
 
 	public long getId() {
 		return id;

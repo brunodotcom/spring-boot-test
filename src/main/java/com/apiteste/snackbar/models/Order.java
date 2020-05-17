@@ -9,17 +9,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
- * Model class to hold Ingredient data
+ * Model class to hold Order data
  *
  * @author Bruno de Souza Rocha
  */
-//TODO Add a Seeder to Ingridient Model
+//TODO Add a Seeder to Order Model
 @Entity
-@Table(name="ingredients")
-public class Ingredient implements Serializable {
+@Table(name="orders")
+public class Order implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -27,13 +28,12 @@ public class Ingredient implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String name;
+	private Double totalValue;
 	
-	private Double value;
-	
-	@ManyToMany(mappedBy = "ingredients")
+	@ManyToMany()
+	@MapsId("id")
 	private List<Sandwich> sandwiches;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -42,19 +42,19 @@ public class Ingredient implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Double getTotalValue() {
+		return totalValue;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTotalValue(Double totalValue) {
+		this.totalValue = totalValue;
 	}
 
-	public Double getValue() {
-		return value;
+	public List<Sandwich> getSandwiches() {
+		return sandwiches;
 	}
 
-	public void setValue(Double value) {
-		this.value = value;
+	public void setSandwiches(List<Sandwich> sandwiches) {
+		this.sandwiches = sandwiches;
 	}
 }
